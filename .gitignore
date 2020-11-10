@@ -1,0 +1,10 @@
+*.exe
+*.exe~
+*.test
+*.out
+.git/
+.idea/
+vendor/
+extensions/
+*.env
+*.zip
