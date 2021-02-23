@@ -35,7 +35,7 @@ func Send(records []interface{}) {
 
 		logEntries = append(logEntries, map[string]interface{}{
 			"timestamp": timestamp.UnixNano() / 1000000,
-			"severity":  3,
+			"severity":  GetSeverityLevel(text),
 			"text":      text,
 			"category":  record["type"],
 		})
