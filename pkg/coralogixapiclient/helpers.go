@@ -17,10 +17,12 @@ func GetEnv(key string, fallback string) string {
 // GetSeverityLevel extract serverity from log message
 func GetSeverityLevel(message string) int {
 	severity := 3
-	if strings.Contains(message, "Warning") || strings.Contains(message, "warn") {
+	message = strings.ToLower(message)
+
+	if strings.Contains(message, "warning") || strings.Contains(message, "warn") {
 		severity = 4
 	}
-	if strings.Contains(message, "Error") || strings.Contains(message, "Exception") {
+	if strings.Contains(message, "error") || strings.Contains(message, "exception") {
 		severity = 5
 	}
 	return severity
