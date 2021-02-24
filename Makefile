@@ -1,5 +1,3 @@
-.PHONY: vendor
-
 fmt:
 	@go fmt ./{cmd,pkg}/*
 
@@ -9,12 +7,17 @@ vet:
 clean:
 	@rm -rf extensions layer.zip
 
-build: clean fmt vet
+build: clean vendor fmt vet
 	@CGO_ENABLED=0 go build -ldflags "-s -w" -o extensions/coralogix-extension cmd/coralogix-extension/main.go
 
 package: build
 	@zip -9 -q -r layer.zip extensions
 	@rm -rf extensions
+
+image:
+	@docker build \
+		-t coralogixrepo/coralogix-lambda-extension:$(or $(VERSION), 1) \
+		-t coralogixrepo/coralogix-lambda-extension:latest .
 
 publish: package
 	@aws lambda publish-layer-version \

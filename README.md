@@ -23,3 +23,21 @@ Add extension layer `coralogix-extension` to your function and define following 
 * **CORALOGIX_PRIVATE_KEY** - A unique ID which represents your company, this Id will be sent to your mail once you register to Coralogix.
 * **CORALOGIX_APP_NAME** - Used to separate your environment, e.g. *SuperApp-test/SuperApp-prod*.
 * **CORALOGIX_SUB_SYSTEM** - Your application probably has multiple subsystems, for example, *Backend servers, Middleware, Frontend servers etc*.
+
+## Container image lambda
+
+In case if you deploy your lambda as container image, to inject extension as part of your function just copy it to your image:
+
+```Dockerfile
+FROM coralogixrepo/coralogix-lambda-extension:latest AS coralogix-extension
+FROM public.ecr.aws/lambda/python:3.8
+# Layer code
+WORKDIR /opt
+COPY --from=coralogix-extension /opt/ .
+# Function code
+WORKDIR /var/task
+COPY app.py .
+CMD ["app.lambda_handler"]
+```
+
+More details you can find [here](https://aws.amazon.com/ru/blogs/compute/working-with-lambda-layers-and-extensions-in-container-images/).
