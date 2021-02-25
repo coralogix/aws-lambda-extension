@@ -7,7 +7,7 @@ vet:
 clean:
 	@rm -rf extensions layer.zip
 
-build: clean vendor fmt vet
+build: clean fmt vet
 	@CGO_ENABLED=0 go build -ldflags "-s -w" -o extensions/coralogix-extension cmd/coralogix-extension/main.go
 
 package: build
