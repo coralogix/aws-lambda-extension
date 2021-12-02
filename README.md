@@ -18,11 +18,12 @@ The extension provides full integration of lambda function with Coralogix servic
 
 ## Usage
 
-Add extension layer `coralogix-extension` to your function and define following environment variables:
+Add extension layer `coralogix-extension-<arch>` to your function, where ``arch`` is one of *x86_64* or *arm64* and define following environment variables:
 
+* **CORALOGIX_LOG_URL** - Coralogix endpoint URL (default: ``https://api.coralogix.com/api/v1/logs``).
 * **CORALOGIX_PRIVATE_KEY** - A unique ID which represents your company, this Id will be sent to your mail once you register to Coralogix.
-* **CORALOGIX_APP_NAME** - Used to separate your environment, e.g. *SuperApp-test/SuperApp-prod*.
-* **CORALOGIX_SUB_SYSTEM** - Your application probably has multiple subsystems, for example, *Backend servers, Middleware, Frontend servers etc*.
+* **CORALOGIX_APP_NAME** - Used to separate your environment, e.g. *SuperApp-test/SuperApp-prod* (default: ``Lambda Function Name``).
+* **CORALOGIX_SUB_SYSTEM** - Your application probably has multiple subsystems, for example, *Backend servers, Middleware, Frontend servers etc* (default: ``logs``).
 
 ## Container image lambda
 
