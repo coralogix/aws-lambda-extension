@@ -19,7 +19,7 @@ func main() {
 	queue := make(chan interface{})
 
 	log.Println("Initializing Lambda Extension", agentName)
-	agentID, err := extensionsapiclient.Register(agentName, map[string]interface{}{
+	agentID, functionName, err := extensionsapiclient.Register(agentName, map[string]interface{}{
 		"events": []string{"INVOKE", "SHUTDOWN"},
 	})
 	if err != nil {
@@ -44,7 +44,7 @@ func main() {
 
 		for {
 			extensionsapiclient.Next(agentID.(string))
-			coralogixapiclient.Send((<-queue).([]interface{}))
+			coralogixapiclient.Send(functionName.(string), (<-queue).([]interface{}))
 		}
 	case <-time.After(9 * time.Second):
 		log.Fatalln("HTTP Server has timedout before starting")
