@@ -1,4 +1,11 @@
-# Coralogix AWS Lambda extension
+# Coralogix AWS Lambda extension (DEPRECATED)
+This Lambda layer has been deprecated.
+Please refere to our Documentation for our latest layer.
+[Coralogix AWS Telemetry Exporter](https://coralogix.com/docs/coralogix-aws-lambda-telemetry-exporter/)
+
+
+
+## Coralogix AWS Lambda extension
 
 [![goreportcard](https://goreportcard.com/badge/github.com/coralogix/aws-lambda-extension)](https://goreportcard.com/report/github.com/coralogix/aws-lambda-extension)
 [![godoc](https://img.shields.io/badge/godoc-reference-brightgreen.svg?style=flat)](https://godoc.org/github.com/coralogix/aws-lambda-extension)
